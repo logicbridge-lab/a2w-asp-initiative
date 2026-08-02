@@ -1,0 +1,284 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://logicbridge.ai/schemas/asp/v1/schema.json",
+  "title": "Agentic Site Profile (ASP)",
+  "description": "A machine-readable profile declaring a website's identity, resources, actions, policies, and interaction patterns for autonomous agents. Implements the Agent-to-Web (A2W) standard.",
+  "type": "object",
+  "required": [
+    "domain",
+    "owner",
+    "version",
+    "scope",
+    "resources",
+    "actions",
+    "policies",
+    "workflows",
+    "auth",
+    "evidence",
+    "observability"
+  ],
+  "properties": {
+    "domain": {
+      "type": "string",
+      "pattern": "^([a-z0-9]+(-[a-z0-9]+)*\\.)+[a-z]{2,}$",
+      "description": "Fully qualified domain name the profile applies to (e.g., example.com)."
+    },
+    "owner": {
+      "type": "object",
+      "required": ["name", "contact_email"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Legal or operational name of the profile maintainer."
+        },
+        "contact_email": {
+          "type": "string",
+          "format": "email",
+          "description": "Contact email for the profile maintainer."
+        },
+        "verification_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional URL to a domain ownership verification document."
+        }
+      },
+      "additionalProperties": false
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of this profile document (e.g., 1.0.0)."
+    },
+    "scope": {
+      "anyOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ],
+      "description": "Path or paths covered by this profile. '/' indicates entire domain."
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "content_type", "description"],
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Path relative to domain root (e.g., /book, /api/availability)."
+          },
+          "content_type": {
+            "type": "string",
+            "description": "MIME type of the resource (e.g., text/html, application/json)."
+          },
+          "description": {
+            "type": "string",
+            "description": "Human-readable description of what the resource provides."
+          },
+          "schema_ref": {
+            "type": "string",
+            "format": "uri",
+            "description": "Optional URI to a schema document for this resource."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description", "parameters", "output", "preconditions"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "description": "Unique action identifier (snake_case)."
+          },
+          "description": {
+            "type": "string",
+            "description": "What the action does."
+          },
+          "parameters": {
+            "type": "object",
+            "description": "Parameter definitions as a JSON Schema object or descriptive text.",
+            "additionalProperties": true
+          },
+          "output": {
+            "type": "string",
+            "description": "Expected output content type (e.g., application/json)."
+          },
+          "preconditions": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Names of actions or conditions that must be satisfied first."
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "policies": {
+      "type": "object",
+      "properties": {
+        "rate_limits": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/policyEntry" }
+        },
+        "authentication": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/policyEntry" }
+        },
+        "data_usage": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/policyEntry" }
+        },
+        "prohibitions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/policyEntry" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "workflows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "description", "steps", "branching"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Unique workflow identifier."
+          },
+          "description": {
+            "type": "string",
+            "description": "What the workflow accomplishes."
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["action", "parameters"],
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "description": "Name of action from the actions array."
+                },
+                "parameters": {
+                  "type": "object",
+                  "description": "Parameter values or references (e.g., from_user, from_service_selection).",
+                  "additionalProperties": true
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "branching": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "condition": { "type": "string" },
+                "then": { "type": "array", "items": { "type": "string" } },
+                "else": { "type": "array", "items": { "type": "string" } }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "auth": {
+      "type": "object",
+      "required": ["required", "type", "parameters"],
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Whether authentication is required for any action."
+        },
+        "type": {
+          "type": "string",
+          "enum": ["none", "api_key", "oauth2", "custom"],
+          "description": "Authentication mechanism type."
+        },
+        "parameters": {
+          "type": "object",
+          "description": "Fields needed for the agent to obtain and present credentials.",
+          "additionalProperties": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["source", "confidence", "references"],
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": ["domain_authored", "inferred"],
+          "description": "Whether the profile was authored by the domain owner or inferred by the bootstrap pipeline."
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Overall confidence score for inferred profiles. Should be 1.0 for domain-authored."
+        },
+        "references": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Paths or URIs to crawl artifacts or extraction evidence supporting the profile."
+        }
+      },
+      "additionalProperties": false
+    },
+    "observability": {
+      "type": "object",
+      "required": ["logs", "metrics", "status_endpoint", "feedback_channel"],
+      "properties": {
+        "logs": {
+          "type": "boolean",
+          "description": "Whether request logs are available to agent operators."
+        },
+        "metrics": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Names of available metrics (e.g., latency, error_rate)."
+        },
+        "status_endpoint": {
+          "anyOf": [
+            { "type": "string", "format": "uri" },
+            { "type": "string", "maxLength": 0 }
+          ],
+          "description": "URL to a health or status endpoint, or an empty string if none is available."
+        },
+        "feedback_channel": {
+          "type": "string",
+          "description": "URL or email for agent operators to report issues."
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "policyEntry": {
+      "type": "object",
+      "required": ["description", "severity", "enforcement"],
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "Human-readable policy description."
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["hard", "soft", "info"],
+          "description": "Enforcement severity: hard = enforced by server, soft = advisory, info = informational."
+        },
+        "enforcement": {
+          "type": "string",
+          "description": "How the policy is enforced (e.g., 429 response, IP ban, privacy policy)."
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

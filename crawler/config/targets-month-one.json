@@ -1,0 +1,392 @@
+{
+  "release": "2026-08",
+  "domains": [
+    {
+      "domain": "opentable.ca",
+      "category": "restaurant",
+      "task_relevant_paths": [
+        "/restaurant",
+        "/availability",
+        "/booking"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": true,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "resy.com",
+      "category": "restaurant",
+      "task_relevant_paths": [
+        "/cities",
+        "/venue",
+        "/booking"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "sevenrooms.com",
+      "category": "restaurant",
+      "task_relevant_paths": [
+        "/widget",
+        "/booking",
+        "/availability"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "touchbistro.com",
+      "category": "restaurant",
+      "task_relevant_paths": [
+        "/online-ordering",
+        "/menu"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "freshii.com",
+      "category": "restaurant",
+      "task_relevant_paths": [
+        "/menu",
+        "/order",
+        "/locations"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "canada.ca",
+      "category": "government",
+      "task_relevant_paths": [
+        "/en/services",
+        "/business",
+        "/permits"
+      ],
+      "rate_limit_rps": 0.5,
+      "screenshots": true,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "ontario.ca",
+      "category": "government",
+      "task_relevant_paths": [
+        "/page/business-licences-permits",
+        "/business"
+      ],
+      "rate_limit_rps": 0.5,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "toronto.ca",
+      "category": "government",
+      "task_relevant_paths": [
+        "/business-economy",
+        "/permits-licences"
+      ],
+      "rate_limit_rps": 0.5,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "gov.bc.ca",
+      "category": "government",
+      "task_relevant_paths": [
+        "/business",
+        "/bizpal",
+        "/permits"
+      ],
+      "rate_limit_rps": 0.5,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "calgary.ca",
+      "category": "government",
+      "task_relevant_paths": [
+        "/business",
+        "/development-permits",
+        "/licences"
+      ],
+      "rate_limit_rps": 0.5,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "well.ca",
+      "category": "ecommerce",
+      "task_relevant_paths": [
+        "/products",
+        "/cart",
+        "/checkout"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": true,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "indigo.ca",
+      "category": "ecommerce",
+      "task_relevant_paths": [
+        "/books",
+        "/cart",
+        "/checkout"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "mec.ca",
+      "category": "ecommerce",
+      "task_relevant_paths": [
+        "/shop",
+        "/cart",
+        "/checkout"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "ecoset.ca",
+      "category": "ecommerce",
+      "task_relevant_paths": [
+        "/collections",
+        "/cart",
+        "/checkout"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "shopify.com",
+      "category": "ecommerce",
+      "task_relevant_paths": [
+        "/demo-store",
+        "/products",
+        "/cart"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "clevelandclinic.ca",
+      "category": "healthcare",
+      "task_relevant_paths": [
+        "/locations",
+        "/departments",
+        "/contact"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": true,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "lifelabs.com",
+      "category": "healthcare",
+      "task_relevant_paths": [
+        "/locations",
+        "/appointments",
+        "/contact"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "telushealth.com",
+      "category": "healthcare",
+      "task_relevant_paths": [
+        "/clinics",
+        "/virtual-care",
+        "/contact"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "acuityscheduling.com",
+      "category": "healthcare",
+      "task_relevant_paths": [
+        "/features",
+        "/booking",
+        "/demo"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "dentsplysirona.com",
+      "category": "healthcare",
+      "task_relevant_paths": [
+        "/find-a-dentist",
+        "/products",
+        "/contact"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "stripe.com",
+      "category": "documentation",
+      "task_relevant_paths": [
+        "/docs/api",
+        "/docs/authentication",
+        "/docs/api-reference"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": true,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "twilio.com",
+      "category": "documentation",
+      "task_relevant_paths": [
+        "/docs",
+        "/docs/api",
+        "/docs/auth"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "github.com",
+      "category": "documentation",
+      "task_relevant_paths": [
+        "/docs",
+        "/docs/authentication",
+        "/docs/rest"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "supabase.com",
+      "category": "documentation",
+      "task_relevant_paths": [
+        "/docs",
+        "/docs/reference",
+        "/docs/auth"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "vercel.com",
+      "category": "documentation",
+      "task_relevant_paths": [
+        "/docs",
+        "/docs/api",
+        "/docs/auth"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "uwaterloo.ca",
+      "category": "university",
+      "task_relevant_paths": [
+        "/admissions",
+        "/future-students",
+        "/important-dates"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": true,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "utoronto.ca",
+      "category": "university",
+      "task_relevant_paths": [
+        "/admissions",
+        "/apply",
+        "/dates-deadlines"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "mcgill.ca",
+      "category": "university",
+      "task_relevant_paths": [
+        "/admissions",
+        "/apply",
+        "/deadlines"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "ubc.ca",
+      "category": "university",
+      "task_relevant_paths": [
+        "/admissions",
+        "/apply",
+        "/deadlines"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    },
+    {
+      "domain": "senecacollege.ca",
+      "category": "university",
+      "task_relevant_paths": [
+        "/admissions",
+        "/programs",
+        "/important-dates"
+      ],
+      "rate_limit_rps": 1.0,
+      "screenshots": false,
+      "validation_status": "unverified",
+      "validation_notes": "Do not crawl until robots.txt and task-relevant paths are verified by the crawler preflight."
+    }
+  ]
+}

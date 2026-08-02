@@ -1,0 +1,128 @@
+{
+  "domain": "example.com",
+  "owner": {
+    "name": "Example Studio",
+    "contact_email": "hello@example.com",
+    "verification_url": "https://example.com/.well-known/ownership"
+  },
+  "version": "1.0.0",
+  "scope": "/",
+  "resources": [
+    {
+      "path": "/",
+      "content_type": "text/html",
+      "description": "Homepage with service overview and contact information"
+    },
+    {
+      "path": "/book",
+      "content_type": "text/html",
+      "description": "Appointment booking form"
+    },
+    {
+      "path": "/api/availability",
+      "content_type": "application/json",
+      "description": "Availability data feed for date selection"
+    }
+  ],
+  "actions": [
+    {
+      "name": "search_services",
+      "description": "Return a list of available services",
+      "parameters": {
+        "query": "string, optional, free text search"
+      },
+      "output": "application/json",
+      "preconditions": []
+    },
+    {
+      "name": "book_appointment",
+      "description": "Submit a booking request for a selected service and time slot",
+      "parameters": {
+        "service_id": "string, required",
+        "date": "string, required, ISO 8601",
+        "time": "string, required, HH:mm",
+        "name": "string, required",
+        "email": "string, required"
+      },
+      "output": "application/json",
+      "preconditions": [
+        "availability_check"
+      ]
+    }
+  ],
+  "policies": {
+    "rate_limits": [
+      {
+        "description": "Maximum 10 booking requests per minute per client IP",
+        "severity": "hard",
+        "enforcement": "429 response"
+      }
+    ],
+    "authentication": [
+      {
+        "description": "No authentication required for browsing and booking",
+        "severity": "info",
+        "enforcement": "none"
+      }
+    ],
+    "data_usage": [
+      {
+        "description": "Email addresses collected are used only for appointment confirmation",
+        "severity": "soft",
+        "enforcement": "privacy policy"
+      }
+    ],
+    "prohibitions": [
+      {
+        "description": "Automated bulk booking or scraping of availability data is prohibited",
+        "severity": "hard",
+        "enforcement": "IP ban"
+      }
+    ]
+  },
+  "workflows": [
+    {
+      "name": "standard_booking",
+      "description": "Browse services, select time, and confirm booking",
+      "steps": [
+        {
+          "action": "search_services",
+          "parameters": {
+            "query": ""
+          }
+        },
+        {
+          "action": "book_appointment",
+          "parameters": {
+            "service_id": "from_service_selection",
+            "date": "from_user",
+            "time": "from_user",
+            "name": "from_user",
+            "email": "from_user"
+          }
+        }
+      ],
+      "branching": []
+    }
+  ],
+  "auth": {
+    "required": false,
+    "type": "none",
+    "parameters": {}
+  },
+  "evidence": {
+    "source": "inferred",
+    "confidence": 0.87,
+    "references": [
+      "crawl/2026-08/example.com/index.html",
+      "crawl/2026-08/example.com/book.html",
+      "extract/2026-08/example.com/forms.json"
+    ]
+  },
+  "observability": {
+    "logs": false,
+    "metrics": [],
+    "status_endpoint": "",
+    "feedback_channel": "hello@example.com"
+  }
+}
