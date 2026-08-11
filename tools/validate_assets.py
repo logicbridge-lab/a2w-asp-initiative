@@ -53,7 +53,6 @@ def validate_repository(root: Path) -> list[str]:
         return errors
 
     schema = _load_json(schema_path, errors)
-    example = _load_json(example_path, errors)
     targets = _load_json(targets_path, errors)
     if errors:
         return errors
@@ -62,9 +61,16 @@ def validate_repository(root: Path) -> list[str]:
     if required_by_schema != REQUIRED_ASP_FIELDS:
         errors.append("ASP schema required fields do not match the canonical 11-field contract")
 
-    missing_example_fields = REQUIRED_ASP_FIELDS - set(example)
-    if missing_example_fields:
-        errors.append(f"Example ASP missing fields: {sorted(missing_example_fields)}")
+    example_paths = sorted((root / "examples").glob("*.json"))
+    if not example_paths:
+        errors.append("Missing ASP JSON examples")
+    for path in example_paths:
+        example = _load_json(path, errors)
+        if not isinstance(example, dict):
+            continue
+        missing_example_fields = REQUIRED_ASP_FIELDS - set(example)
+        if missing_example_fields:
+            errors.append(f"{path.relative_to(root)} missing fields: {sorted(missing_example_fields)}")
 
     domain_entries = targets.get("domains") if isinstance(targets, dict) else None
     if not isinstance(domain_entries, list) or not domain_entries:

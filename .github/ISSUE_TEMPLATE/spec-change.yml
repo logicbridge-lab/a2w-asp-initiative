@@ -1,0 +1,22 @@
+name: Specification change
+about: Propose a normative protocol, schema, security, or conformance change
+title: "spec: "
+labels: [spec]
+body:
+  - type: textarea
+    attributes:
+      label: Problem
+      description: What interoperability or safety problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed normative change
+      description: Use MUST, SHOULD, or MAY where applicable.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Compatibility and migration
+    validations:
+      required: true

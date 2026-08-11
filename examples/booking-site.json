@@ -1,0 +1,35 @@
+{
+  "domain": "bookings.example.org",
+  "owner": {
+    "name": "Example Bookings",
+    "contact_email": "support@bookings.example.org"
+  },
+  "version": "0.1.0",
+  "scope": ["/availability", "/book"],
+  "resources": [
+    {
+      "path": "/availability",
+      "content_type": "application/json",
+      "description": "Available booking slots"
+    }
+  ],
+  "actions": [
+    {
+      "name": "request_booking",
+      "description": "Request, but do not guarantee, a booking slot",
+      "parameters": {"slot": "ISO 8601 datetime", "party_size": "integer"},
+      "output": "application/json",
+      "preconditions": ["user_confirmation"]
+    }
+  ],
+  "policies": {
+    "rate_limits": [{"description": "Five requests per minute per client", "severity": "hard", "enforcement": "HTTP 429"}],
+    "authentication": [],
+    "data_usage": [{"description": "Contact data is used only to confirm a booking request", "severity": "soft", "enforcement": "privacy policy"}],
+    "prohibitions": [{"description": "Do not submit bookings without the user's confirmation", "severity": "hard", "enforcement": "server-side confirmation"}]
+  },
+  "workflows": [{"name": "request_booking", "description": "Check availability, obtain confirmation, then request booking", "steps": [{"action": "request_booking", "parameters": {"slot": "from_user", "party_size": "from_user"}}], "branching": []}],
+  "auth": {"required": false, "type": "none", "parameters": {}},
+  "evidence": {"source": "domain_authored", "confidence": 1.0, "references": []},
+  "observability": {"logs": false, "metrics": ["rate_limit_remaining"], "status_endpoint": "", "feedback_channel": "support@bookings.example.org"}
+}

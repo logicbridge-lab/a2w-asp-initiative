@@ -1,0 +1,46 @@
+{
+  "domain": "example.org",
+  "owner": {
+    "name": "Example Public Library",
+    "contact_email": "webmaster@example.org"
+  },
+  "version": "0.1.0",
+  "scope": "/",
+  "resources": [
+    {
+      "path": "/hours",
+      "content_type": "text/html",
+      "description": "Opening hours and location information"
+    }
+  ],
+  "actions": [],
+  "policies": {
+    "rate_limits": [],
+    "authentication": [],
+    "data_usage": [],
+    "prohibitions": [
+      {
+        "description": "No automated account creation is supported.",
+        "severity": "hard",
+        "enforcement": "server-side authorization"
+      }
+    ]
+  },
+  "workflows": [],
+  "auth": {
+    "required": false,
+    "type": "none",
+    "parameters": {}
+  },
+  "evidence": {
+    "source": "domain_authored",
+    "confidence": 1.0,
+    "references": []
+  },
+  "observability": {
+    "logs": false,
+    "metrics": [],
+    "status_endpoint": "",
+    "feedback_channel": "webmaster@example.org"
+  }
+}

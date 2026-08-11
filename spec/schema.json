@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://logicbridge.ai/schemas/asp/v1/schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/logicbridge-lab/a2w-asp-initiative/main/spec/schema.json",
   "title": "Agentic Site Profile (ASP)",
   "description": "A machine-readable profile declaring a website's identity, resources, actions, policies, and interaction patterns for autonomous agents. Implements the Agent-to-Web (A2W) standard.",
   "type": "object",

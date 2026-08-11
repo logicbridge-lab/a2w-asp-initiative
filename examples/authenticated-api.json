@@ -1,0 +1,21 @@
+{
+  "domain": "api.example.org",
+  "owner": {
+    "name": "Example API",
+    "contact_email": "security@example.org"
+  },
+  "version": "0.1.0",
+  "scope": "/v1",
+  "resources": [{"path": "/v1/catalog", "content_type": "application/json", "description": "Public catalog endpoint"}],
+  "actions": [{"name": "read_catalog", "description": "Read the public catalog", "parameters": {}, "output": "application/json", "preconditions": []}],
+  "policies": {
+    "rate_limits": [{"description": "60 requests per minute", "severity": "hard", "enforcement": "HTTP 429"}],
+    "authentication": [{"description": "Bearer token required for non-public API endpoints", "severity": "hard", "enforcement": "HTTP 401"}],
+    "data_usage": [],
+    "prohibitions": [{"description": "No bulk export or credential sharing", "severity": "hard", "enforcement": "server-side authorization"}]
+  },
+  "workflows": [],
+  "auth": {"required": true, "type": "oauth2", "parameters": {"authorization_url": "https://api.example.org/oauth/authorize"}},
+  "evidence": {"source": "domain_authored", "confidence": 1.0, "references": []},
+  "observability": {"logs": false, "metrics": ["latency", "error_rate"], "status_endpoint": "https://api.example.org/status", "feedback_channel": "security@example.org"}
+}

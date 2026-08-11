@@ -1,25 +1,54 @@
-# A2W/ASP Initiative — LogicBridge
+# A2W/ASP
 
-Agent-to-Web (A2W) and Agentic Site Profile (ASP) are an open-standard and open-corpus initiative by LogicBridge to make the web more legible, safe, and efficient for autonomous agents.
+**Agent-to-Web (A2W)** is a draft protocol for agents to discover a domain-controlled description of a website. An **Agentic Site Profile (ASP)** is that description: a JSON document declaring resources, actions, policies, authentication, evidence, and observability.
 
-## Vision
+> **Status: Draft 0.1.0.** The schema, protocol, and conformance rules are public working drafts. They are not yet a stable standard and must not be represented as one.
 
-A2W is an open standard for structured interaction between autonomous agents and websites. ASP is a site-level profile that declares identity, resources, actions, policies, and evidence. Long term, domains publish an ASP alongside their human site, ideally under `/.well-known/`, so agents can use a domain-controlled, machine-readable interface instead of scraping human pages.
+## Start here
 
-## What This Repository Contains
+| I am… | Read… |
+|---|---|
+| A site owner | [Publish an ASP](docs/getting-started/site-owners.md) |
+| An agent builder | [Consume an ASP](docs/getting-started/agent-builders.md) |
+| An evaluator | [Conformance](spec/conformance.md) |
+| A contributor | [Governance](governance/GOVERNANCE.md) and [contributing](CONTRIBUTING.md) |
 
-This repository currently contains the A2W/ASP research and strategy corpus, the machine-readable ASP JSON Schema, an example inferred ASP Draft, a Month One candidate domain list, benchmark and release specifications, and an asset-validation workflow. Crawler, extraction, benchmark-agent, and release implementations are planned but not yet present.
+## What A2W does
 
-## Status
+A2W defines a discovery convention for an ASP at `https://<domain>/.well-known/asp`. It does not grant access, bypass authentication, override robots.txt, replace an API, or authorize actions. The domain owner remains in control of what is published and what an agent may do.
 
-This is an early-stage initiative. The core artifacts are `a2w-asp-research-report.md`, `a2w_asp_scientific_paper_of_intent.md`, `a2w_asp_initiative_corpus.md`, `hermes_org_a2w_brief.md`, and `hermes_pmdev_a2w_brief.md`. The canonical schema is `spec/schema.json`; it validates `examples/example-asp-draft.json` in CI.
+## Core artifacts
 
-## Contributing
+- [Protocol specification](spec/a2w-protocol.md) — normative discovery and consumption behavior.
+- [ASP JSON Schema](spec/schema.json) — canonical machine-readable Draft 0.1 schema.
+- [Schema reference](docs/reference/schema.md) — field-level explanation.
+- [Security and policy](spec/security.md) — mandatory safety expectations.
+- [Conformance](spec/conformance.md) — implementation levels and pass/fail rules.
+- [Examples](examples/) — profile fixtures for a public information site, a booking site, and an authenticated API.
+- [Reference utilities](reference/) — local publisher and validator.
+- [Status](docs/STATUS.md) — stable, draft, and planned material.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Do not crawl, publish, or submit data that violates a domain's robots.txt, terms of access, or applicable law.
+## Quick local check
+
+```bash
+python3 reference/asp_validator.py examples/public-information-site.json
+python3 -m unittest discover -s tests -v
+```
+
+## Scope
+
+A2W is an additive, domain-controlled web convention. Existing human-facing pages, APIs, robots.txt, authentication, and legal terms remain authoritative. If an ASP is absent, malformed, unavailable, or disallows a requested action, agents must follow the protocol fallback rules rather than infer permission.
+
+## Research context
+
+The original research and implementation planning corpus remains available in this repository for transparency. It is background material, not normative specification: [research report](a2w-asp-research-report.md), [paper of intent](a2w_asp_scientific_paper_of_intent.md), and [initiative corpus](a2w_asp_initiative_corpus.md).
+
+## Contributing and releases
+
+See [CONTRIBUTING.md](CONTRIBUTING.md), [versioning](governance/VERSIONING.md), [governance](governance/GOVERNANCE.md), and [the changelog](CHANGELOG.md). Contributions are Apache-2.0 licensed.
 
 ## License
 
-Apache-2.0 — see [LICENSE](LICENSE) for details.
+Apache-2.0 — see [LICENSE](LICENSE).
 
-This initiative is led by LogicBridge, a Toronto-based AI lab building small, quantized, domain-specific models and trusted workflow tools for Canadian SMEs.
+A2W/ASP is initiated by LogicBridge, a Toronto-based AI lab building trusted workflow tools and domain-specific AI infrastructure.
